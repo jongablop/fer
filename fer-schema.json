@@ -4,8 +4,33 @@
   "description": "Schema for experimental result file following the 'fer' data structure.",
   "type": "object",
   "properties": {
-    "quantity_values": {
-      "type": "array",
+    "id": { "type": "string" },
+        "changelog": {
+          "type": "array",
+          "optional": true,
+          "items": { "$ref": "#/definitions/ChangelogEntry" }
+        },
+        "description": { "type": "string" },
+        "correct": { "type": "boolean" },
+        "state": {
+          "type": "array",
+          "items": {"$ref": "#/definitions/State" }
+        },
+        "results": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/QuantityValues" }
+        },
+        "correlations": { "$ref": "#/definitions/Correlations" },
+        "measurands": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "source": { "$ref": "#/definitions/Source" }
+      },
+    "required": ["id", "results", "source"],
+  "definitions": {
+    "QuantityValues": {
+      "type": "object",
       "items": {
         "type": "object",
         "properties": {
@@ -58,31 +83,7 @@
         "required": ["id", "name", "quantities", "units", "values", "standard_uncertainties"]
       }
     },
-    "measurement": {
-      "type": "object",
-      "properties": {
-        "id": { "type": "string" },
-        "changelog": {
-          "type": "array",
-          "items": { "$ref": "#/definitions/ChangelogEntry" }
-        },
-        "description": { "type": "string" },
-        "correct": { "type": "boolean" },
-        "state": { "$ref": "#/definitions/State" },
-        "results": {
-          "type": "array",
-          "items": { "$ref": "#/definitions/QuantityValues" }
-        },
-        "correlations": { "$ref": "#/definitions/Correlations" },
-        "measurands": {
-          "type": "array",
-          "items": { "type": "string" }
-        },
-        "source": { "$ref": "#/definitions/Source" }
-      },
-      "required": ["id", "results", "source"]
-    },
-    "source": {
+    "Source": {
       "type": "object",
       "properties": {
         "id": { "type": "string" },
@@ -100,9 +101,34 @@
         "correlations": { "$ref": "#/definitions/Correlations" }
       },
       "required": ["id", "name", "input_quantities"]
-    }
-  },
-  "definitions": {
+    },
+    "Measurement": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "changelog": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/ChangelogEntry" }
+        },
+        "description": { "type": "string" },
+        "correct": { "type": "boolean" },
+        "state": {
+          "type": "array",
+          "items": {"$ref": "#/definitions/State" }
+        },
+        "results": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/QuantityValues" }
+        },
+        "correlations": { "$ref": "#/definitions/Correlations" },
+        "measurands": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "source": { "$ref": "#/definitions/Source" }
+      },
+      "required": ["id", "results", "source"]
+    },
     "ChangelogEntry": {
       "type": "object",
       "properties": {
