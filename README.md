@@ -193,4 +193,4 @@ We have developed a JSON schema for the ``fer`` data structure that includes the
 
 ## Implementations
 
-A Python-based implementation of the fer data structure can be found [here](https://github.com/jongablop/fer-py).
+A Python-based implementation of the fer data structure can be found [here](https://github.com/jongablop/ferpy).
